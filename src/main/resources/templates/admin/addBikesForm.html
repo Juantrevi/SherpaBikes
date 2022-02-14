@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head th:replace="/Layouts/base-Layout :: head"></head>
+
+<body>
+
+<nav th:replace="/Layouts/base-Layout :: nav"></nav>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-6">
+            <form th:action="@{/bikes/save-bike/}" th:object="${bike}" method="post">
+                <select class="form-select" th:field="*{hotel}">
+                    <option
+                            th:value="${alojamiento.id}"
+                            th:text="${alojamiento.name}">
+                    </option>
+                </select>
+
+                <h4 class="text-center mt-5">Bicicletas</h4>
+
+                <div class="form-group my-5">
+                    <input type="date" th:field="*{adquisitionDate}" class="form-control" placeholder="Fecha Adquisicion">
+                </div>
+
+                <div class="form-group my-5">
+                    <input type="text" th:field="*{bikeModel}" class="form-control" placeholder="Tipo de bici">
+                </div>
+
+                <div class="form-group my-5">
+                    <button class="btn btn-secondary form-control">Guardar</button>
+                </div>
+
+            </form>
+
+
+        </div>
+    </div>
+</div>
+</body>
+</html>
