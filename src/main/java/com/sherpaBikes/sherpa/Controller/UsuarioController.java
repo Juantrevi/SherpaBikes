@@ -52,15 +52,15 @@ public class UsuarioController {
         usuario.setPassword(passwordEncoder.encode(password)); //encripto la clave
 
         //Asigno ROL_ADMIN
-        // Rol rolAdmin = rolService.getByRolNombre(RolNombre.ROLE_ADMIN).get();
+         Rol rolAdmin = rolService.getByRolNombre(RolNombre.ROLE_ADMIN).get();
 
         //Asigno ROL_HOTEL
-        Rol rolHotel = rolService.getByRolNombre(RolNombre.ROLE_HOTEL).get();
+//        Rol rolHotel = rolService.getByRolNombre(RolNombre.ROLE_HOTEL).get();
 
 
         //Creo un set para añadir roles porque pueden ser muchos
         Set<Rol> roles = new HashSet<Rol>();
-        roles.add(rolHotel);
+        roles.add(rolAdmin);
         //roles.add(rolAdmin);
 
         //Asignamos el rol del usuario al usuario
@@ -71,13 +71,15 @@ public class UsuarioController {
         //Utilizamos el model para mandarle info a la vista
         redirect.addFlashAttribute("usuarioRegistrado", "Registro Completado, inicie sesión");
 
-        if (rolHotel == rolService.getByRolNombre(RolNombre.ROLE_ADMIN).get()) {
-            return "redirect:/admin/gestion-hoteles";
-        }
-
-        if (rolHotel == rolService.getByRolNombre(RolNombre.ROLE_HOTEL).get()) {
-            return "redirect:/hotel/gestion-bicicletas";
-        }
+        //Aca el Javi se mando cualquiera, lo comente por las dudas para no borrar
+        //@Juan
+//        if (rolHotel == rolService.getByRolNombre(RolNombre.ROLE_ADMIN).get()) {
+//            return "redirect:/admin/gestion-hoteles";
+//        }
+//
+//        if (rolHotel == rolService.getByRolNombre(RolNombre.ROLE_HOTEL).get()) {
+//            return "redirect:/hotel/gestion-bicicletas";
+//        }
 
         return "redirect:/guestForm";
     }

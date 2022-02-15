@@ -21,13 +21,6 @@ public class AdminController {
     @Autowired
     private HotelServiceImp hotelService;
 
-    //Metodo para que me despliegue un formulario de carga de hoteles
-    @GetMapping("/hotel-form")
-    public String hotelForm(Model model) { //Para pasarle el objeto que quiero guardar a la base de datos utilizo Model
-        model.addAttribute("usuariohotel", new UsuarioHotel());
-        return "admin/hotelForm";
-    }
-
     //Metodo POST para guardar hoteles
     @PostMapping("/save-hotel")
     public String saveHotel(MultipartFile archivo, @RequestParam String name, @RequestParam String location,
@@ -46,6 +39,14 @@ public class AdminController {
         return "redirect:/registro"; //para que me redirecciona al formulario de carga de hoteles nuevamente
     }
 
+    //Metodo para que me despliegue un formulario de carga de hoteles
+    @GetMapping("/hotel-form")
+    public String hotelForm(Model model) { //Para pasarle el objeto que quiero guardar a la base de datos utilizo Model
+
+
+
+        return "admin/hotelForm";
+    }
 
     //Método que me muestra listado de los hoteles para gestionarlos
     @GetMapping("/gestion-hoteles")
@@ -62,7 +63,7 @@ public class AdminController {
         hotelService.deleteHotel(id);
         redirect.addFlashAttribute("hotelEliminado","Hotel Eliminado");
 
-        return "redirect:/admin/gestion-hoteles";}
+            return "redirect:/admin/gestion-hoteles";}
 
     //Método para desplegar formulario de edición de hoteles
     @GetMapping("/editar-form/{id}")
